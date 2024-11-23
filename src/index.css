@@ -10,7 +10,7 @@ body {
 }
 
 .hero {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/hero-bg.webp) fixed center center;
+  background: url(./images/hero-bg.webp) fixed center center;
   background-size: cover;
 }
 
