@@ -10,7 +10,7 @@ body {
 }
 
 .hero {
-  background: url(./images/hero-bg.webp) fixed center center;
+  background: url(./images/hero-bg.webp) center;
   background-size: cover;
 }
 

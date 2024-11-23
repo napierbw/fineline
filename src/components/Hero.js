@@ -10,10 +10,9 @@ const Hero = () => {
         </div>
 
         <div
-          className="p-2 md:p-12 h-[80vh] flex items-center justify-center"
+          className="p-2 md:p-12 h-[600px] flex items-center justify-center"
           data-aos="zoom-in"
         >
-
           <div
             id="hero"
             className="flex flex-col lg:flex-row py-8 justify-center text-center items-center"
@@ -27,7 +26,7 @@ const Hero = () => {
                 Fine Line Barbershop LLC
               </h1>
               <div className="text-xl font-semibold tracking-tight mb-5 text-white">
-               804-396-9174 | 13965 Raised Antler Cir | Midlothian, VA 23112
+                804-396-9174 | 13965 Raised Antler Cir | Midlothian, VA 23112
               </div>
               <div className="text-xl font-semibold tracking-tight mb-5 text-white">
                 Walk-ins welcome!
