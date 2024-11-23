@@ -3,13 +3,10 @@ import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
-    <div id="services" className="bg-gray-100 py-12">
+    <div id="services" className="bg-gray-100">
       <section>
         <div className="m-auto max-w-6xl p-2 md:p-12 h-5/6">
-          <div
-            className="flex flex-col-reverse lg:flex-row py-8 lg:text-left"
-            data-aos="zoom-out"
-          >
+          <div className="flex flex-col-reverse lg:flex-row py-8 lg:text-left">
             <div className="lg:w-1/2 flex flex-col lg:mx-4">
               <h3
                 className="text-3xl  text-black
