@@ -8,7 +8,7 @@ const Testimonials = () => {
       <div className="testimonial">
         <NavBar />
         <div
-          className="p-2 md:p-12 h-[80vh] flex items-center justify-center"
+          className="p-2 md:p-12 h-[600px] flex items-center justify-center"
           data-aos="zoom-in"
         >
           <div className="flex flex-col lg:flex-row py-8 justify-center text-center items-center">

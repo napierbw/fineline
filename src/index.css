@@ -10,26 +10,26 @@ body {
 }
 
 .hero {
-  background: url(./images/hero-bg.webp) center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/hero-bg.webp) center;
   background-size: cover;
 }
 
 .services {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/haircut.webp) fixed center center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/haircut.webp) center;
   background-size: cover;
 }
 
 .testimonial {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/testimonial.webp) fixed center center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/testimonial.webp) fixed center;
   background-size: cover;
 }
 
 .footer {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/logo.webp) fixed center center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/logo.webp) center;
 }
 
 .cta {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/logo.webp) fixed center center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/logo.webp) center;
 }
 
 
