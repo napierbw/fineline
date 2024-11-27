@@ -11,18 +11,18 @@ const Footer = () => {
             {/* 1st block */}
             <div className="col-span-12 lg:col-span-4">
               <div className="box-border border-b-4 border-black p-8 bg-gray-200 text-gray-600 text-center rounded-lg xl:w-80 mx-auto">
-                <h3 className="font-bold text-4xl mb-4 text-black">
+                <p className="font-bold text-4xl mb-4 text-black">
                   Fine Line Barbershop LLC
-                </h3>
+                </p>
                 <div className="text-md font-medium text-gray-700">
-                  <h4>Est. 2019</h4>
+                  <p>Est. 2019</p>
                 </div>
               </div>
             </div>
 
             {/* 2nd block */}
             <div className="col-span-12 md:col-span-6 lg:col-span-1 ml-7 mx-auto">
-              <h4 className="text-gray-100 text-xl font-bold mb-4">LINKS</h4>
+              <p className="text-gray-100 text-xl font-bold mb-4">LINKS</p>
               <ul className="text-md">
                 <li className="mb-2">
                   <Link
@@ -69,9 +69,7 @@ const Footer = () => {
 
             {/* 3rd block */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ml-7 md:ml-16 lg:ml-16 mx-auto">
-              <h4 className="text-gray-100 text-xl font-bold mb-4">
-                CONTACT US
-              </h4>
+              <p className="text-gray-100 text-xl font-bold mb-4">CONTACT US</p>
               <ul className="text-md">
                 <li className="mb-2">
                   <a

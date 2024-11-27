@@ -15,7 +15,7 @@ body {
 }
 
 .services {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(./images/haircut.webp) center;
+  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7));
   background-size: cover;
 }
 
