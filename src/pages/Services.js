@@ -1,17 +1,98 @@
 import React from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar/NavBar";
-import longHair from "../images/long-hair-cut.webp";
-import beardTrim from "../images/beard-trim.webp";
-import expressPartialShave from "../images/express-partial-shave.webp";
-import worksPartialShave from "../images/works-partial-shave.webp";
-import expressFullShave from "../images/express-full-face-shave.webp";
-import worksFullShave from "../images/works-full-shave.webp";
-import lineUp from "../images/line-up.webp";
-import shampoo from "../images/shampooing.webp";
-import hairDesign from "../images/hair-designs.webp";
+import * as contentful from "contentful";
+import { useState, useEffect } from "react";
+
+const client = contentful.createClient({
+  space: "9yhw5dafhh7t",
+  environment: "master", // defaults to 'master' if not set
+  accessToken: "9gGl71HMnDTNbB9fcnRr7j6mZtxw3U6sU1UI_JRarZk",
+});
+
+// client
+//   .getEntry("7DXlCmvt6siZY4k7cq3wLT")
+//   .then((entry) => console.log(entry))
+//   .catch(console.error);
+
+// const renderGallery = async () => {
+//   client
+//     .getEntries()
+//     .then((entries) => {
+//       console.log(entries);
+//       entries.items.map((entry) => {
+//         <img href={`https:${entry.fields.photo.fields.file.url}`}></img>;
+//       });
+//     })
+//     .catch(console.error);
+// };
 
 const Services = () => {
+  const [services, setServices] = useState([]);
+
+  const fetchServices = async () => {
+    try {
+      const serviceMenu = await client.getEntry("6vXcyToT0GgDLpswKUxziD");
+      console.log(serviceMenu.fields.serviceItems);
+      const serviceElements = serviceMenu.fields.serviceItems.map((svc) => (
+        <div
+          className="p-2 md:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 my-4 w-full px-8 aos-init aos-animate"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          {/* Image Column */}
+          {svc.fields.photo ? (
+            <div className="flex justify-center w-full mb-4 lg:mb-0">
+              <img
+                key={svc.sys.id}
+                src={`https:${svc.fields.photo.fields.file.url}`}
+                alt={svc.fields.photo.fields.title || "Service image"}
+                className="service-image"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {/* Text Column */}
+          <div className="flex flex-col items-center justify-center">
+            {svc.fields.service && svc.fields.price ? (
+              <h2 className="text-3xl text-black font-bold text-center mb-4">
+                {svc.fields.service} - {svc.fields.price}
+              </h2>
+            ) : (
+              <h2 className="text-3xl text-black font-bold text-center mb-4">
+                {svc.fields.service}
+              </h2>
+            )}
+
+            {svc.fields.description ? (
+              <p className="my-3 text-xl text-gray-600 font-semibold text-center">
+                {svc.fields.description.split("/n").map((part, index) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < svc.fields.description.split("/n").length - 1 && (
+                      <br />
+                    )}
+                  </React.Fragment>
+                ))}
+              </p>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+      ));
+      setServices(serviceElements);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
   return (
     <>
       <div className="services">
@@ -33,238 +114,23 @@ const Services = () => {
           </div>
         </div>
       </div>
-      <div className="m-auto max-w-6xl p-2 md:p-12 h-5/6" id="about">
-        <div
-          className="flex flex-col-reverse lg:flex-row py-8 justify-between"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="my-4 text-center lg:my-0 lg:justify-end w-full px-8">
-            <h2 className="text-3xl  text-black font-bold text-center">
-              Haircut- $25
-            </h2>
-            <div>
-              <p className="my-3 text-xl text-gray-600 font-semibold text-center">
-                After arriving at the Barbershop, one of our Barbers will greet
-                you and discuss with you the type of Haircut you are looking for
-                and any specific preferences or concerns that you may have.
-              </p>
-              <p className="my-3 text-xl text-gray-600 font-semibold text-center">
-                Our Barbers use clippers and or scissors depending on your
-                desired look. They will line up your neck and sideburns with
-                trimmers that followed by a straight razor for a sharp clean
-                finish.
-              </p>
-            </div>
-            <h2 className="m-8 text-3xl  text-black font-bold text-center">
-              Razor / Bald Fade- $30
-            </h2>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col-reverse lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          {/* Image Section */}
-          <div className="flex-1 flex justify-center w-full mb-4 lg:mb-0">
-            <div className="w-full">
-              <img
-                src={longHair}
-                alt="Long Hair Style"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Text Section */}
-          <div className="flex-1 flex items-center justify-center">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              Long Hair Cut- $35
-            </h2>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              Beard Trim- $15
-            </h2>
-          </div>
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={beardTrim}
-                alt="Beard Trim Style"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col-reverse lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={expressPartialShave}
-                alt="Express Partial Shave Style"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              The Express Partial Face Shave- $20
-            </h2>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              The Works Partial Face Shave- $25
-            </h2>
-          </div>
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={worksPartialShave}
-                alt="The Works Partial Face Shave Experience"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col-reverse lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={expressFullShave}
-                alt="Express Full Shave Style"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              The Express Full Face Shave- $25
-            </h2>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              The Works Full Face Shave- $30
-            </h2>
-          </div>
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={worksFullShave}
-                alt="The Works Full Face Shave Experience"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col-reverse lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={lineUp}
-                alt="Line Up Style"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              Line Up- $15
-            </h2>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex items-center justify-center ">
-            <div className="my-4 text-center lg:my-0 lg:justify-end w-full px-8">
-              <h2 className="m-8 text-3xl text-black font-bold text-center">
-                Shampooing- $10
-              </h2>
-              <p className="my-3 text-xl text-gray-600 font-semibold text-center">
-                After rinsing your hair thoroughly and applying the appropriate
-                shampoo for your hair and scalp type, you will receive an
-                invigorating scalp massage and conditioner to follow.
-              </p>
-              <p className="my-3 text-xl text-gray-600 font-semibold text-center">
-                The experience is designed to be relaxing and rejuvenating,
-                leaving your hair and scalp clean, healthy and ready for
-                styling.
-              </p>
-            </div>
-          </div>
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={shampoo}
-                alt="The Works Full Face Shave Experience"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="flex flex-col-reverse lg:flex-row my-4 w-full px-8"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <div className="flex-1 flex justify-center w-full">
-            <div className="w-full">
-              <img
-                src={hairDesign}
-                alt="Hair Design"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex-1 flex items-center justify-center ">
-            <h2 className="m-8 text-3xl text-black font-bold text-center">
-              Hair Designs- $5+
-            </h2>
-          </div>
-        </div>
+      <div className="m-auto max-w-6xl p-2 md:p-12 h-5/6">
+        {services.length > 0 ? (
+          <>
+            {services.map((svc, index) => (
+              <div
+                className="aos-init aos-animate"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                key={index}
+              >
+                {svc}
+              </div>
+            ))}
+          </>
+        ) : (
+          <p className="h-[20vh] mb-48 text-white text-center">Coming soon!</p>
+        )}
       </div>
       <Footer />
     </>
