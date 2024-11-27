@@ -3,7 +3,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// All pages
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Testimonials from "./pages/Testimonials";
@@ -14,17 +13,17 @@ import Staff from "./pages/Staff";
 
 function App() {
   useEffect(() => {
-    const aos_init = () => {
-      AOS.init({
-        once: true,
-        duration: 1000,
-        easing: "ease-out-cubic",
-      });
-    };
-
-    window.addEventListener("load", () => {
-      aos_init();
+    AOS.init({
+      once: true,
+      duration: 1000,
+      easing: "ease-out-cubic",
     });
+
+    window.addEventListener("resize", AOS.refresh);
+
+    return () => {
+      window.removeEventListener("resize", AOS.refresh);
+    };
   }, []);
 
   useDocTitle("Fine Line Barbershop LLC");
