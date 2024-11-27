@@ -15,7 +15,6 @@ const Services = () => {
   const fetchServices = async () => {
     try {
       const serviceMenu = await client.getEntry("6vXcyToT0GgDLpswKUxziD");
-      console.log(serviceMenu.fields.serviceItems);
       const serviceElements = serviceMenu.fields.serviceItems.map((svc) => (
         <div>
           {svc.fields.service && svc.fields.price ? (

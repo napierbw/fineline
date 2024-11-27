@@ -33,7 +33,6 @@ const Gallery = () => {
   const fetchGallery = async () => {
     try {
       const mainGallery = await client.getEntry("6gFyMowBFVhDPZKz6l4WXq");
-      console.log(mainGallery.fields.photos);
       const imageElements = mainGallery.fields.photos.map((entry) => (
         <img
           key={entry.sys.id}

@@ -33,7 +33,6 @@ const Services = () => {
   const fetchServices = async () => {
     try {
       const serviceMenu = await client.getEntry("6vXcyToT0GgDLpswKUxziD");
-      console.log(serviceMenu.fields.serviceItems);
       const serviceElements = serviceMenu.fields.serviceItems.map((svc) => (
         <div
           className="p-2 md:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 my-4 w-full px-8 aos-init aos-animate"
