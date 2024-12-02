@@ -1,14 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar/NavBar";
-import * as contentful from "contentful";
 import { useState, useEffect } from "react";
-
-const client = contentful.createClient({
-  space: "9yhw5dafhh7t",
-  environment: "master", // defaults to 'master' if not set
-  accessToken: process.env.Contentful_AccessToken,
-});
 
 // client
 //   .getEntry("7DXlCmvt6siZY4k7cq3wLT")
@@ -32,7 +25,9 @@ const Gallery = () => {
 
   const fetchGallery = async () => {
     try {
-      const mainGallery = await client.getEntry("6gFyMowBFVhDPZKz6l4WXq");
+      const mainGallery = await fetch(
+        "/api/getContentfulEntry/6gFyMowBFVhDPZKz6l4WXq"
+      );
       const imageElements = mainGallery.fields.photos.map((entry) => (
         <img
           key={entry.sys.id}

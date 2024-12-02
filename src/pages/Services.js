@@ -1,14 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar/NavBar";
-import * as contentful from "contentful";
 import { useState, useEffect } from "react";
-
-const client = contentful.createClient({
-  space: "9yhw5dafhh7t",
-  environment: "master", // defaults to 'master' if not set
-  accessToken: process.env.Contentful_AccessToken,
-});
 
 // client
 //   .getEntry("7DXlCmvt6siZY4k7cq3wLT")
@@ -32,7 +25,9 @@ const Services = () => {
 
   const fetchServices = async () => {
     try {
-      const serviceMenu = await client.getEntry("6vXcyToT0GgDLpswKUxziD");
+      const serviceMenu = await fetch(
+        "/api/getContentfulEntry/6vXcyToT0GgDLpswKUxziD"
+      );
       const serviceElements = serviceMenu.fields.serviceItems.map((svc) => (
         <div
           className="p-2 md:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 my-4 w-full px-8 aos-init aos-animate"
