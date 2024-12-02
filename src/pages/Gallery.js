@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const client = contentful.createClient({
   space: "9yhw5dafhh7t",
   environment: "master", // defaults to 'master' if not set
-  accessToken: "9gGl71HMnDTNbB9fcnRr7j6mZtxw3U6sU1UI_JRarZk",
+  accessToken: process.env.Contentful_AccessToken,
 });
 
 // client
